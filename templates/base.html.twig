@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Exo-Berachem!
+			{% endblock %}
+		</title>
+		<link rel="icon" type="image/x-icon" href="assets/img/symfony_logo.jpg"/>
+		{% block stylesheets %}
+			<link id="cdnLink" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+			<style>
+				h1 {
+					margin-top: 25px;
+				}
+			</style>
+		{% endblock %}
+		{% block javascripts %}
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+			<script src="{{ asset('assets/js/theme.js') }}"></script>
+		{% endblock %}
+	</head>
+	<body>
+
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="{{ path('app_home_page') }}">
+					<img src="{{ asset('assets/img/enedis_logo.png') }}" width="120" height="30" class="d-inline-block align-top" alt="EnedisLogo">
+
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div
+						class="navbar-nav">
+						<!-- if user is connected -->
+						{% if app.user %}
+							<a class="nav-item nav-link text-dark" href="{{ path('app_home_page') }}">🏠 Home</a>
+							<a class="nav-item nav-link text-dark" href="{{ path('app_task_index') }}">📝 Tasks</a>
+							<a class="nav-item nav-link text-dark" href="{{ path('app_category_index') }}">📁 Categories</a>
+							{% if is_granted('ROLE_ADMIN') %}
+								<a class="nav-item nav-link text-dark" href="{{ path('app_admin_index') }}">🔒 Admin</a>
+							{% endif %}
+							<a class="nav-item nav-link text-dark" href="{{ path('app_data') }}">👀 Data</a>
+							<a class="nav-item nav-link text-dark" href="{{ path('app_profile_index') }}">😎 Profile</a>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									🎨 Theme
+								</a>
+								<ul
+									class="dropdown-menu" id="themeDropdown"><!-- Les éléments de liste seront générés dynamiquement ici -->
+								</ul>
+							</li>
+
+							<a class="nav-item nav-link text-danger" href="{{ path('app_logout') }}">🚪 Logout</a>
+						{% else %}
+							<a class="nav-item nav-link text-dark" href="{{ path('app_login') }}">⚡Login/register</a>
+						{% endif %}
+
+
+					</div>
+
+				</div>
+			</div>
+		</nav>
+
+		{% block body %}{% endblock %}
+
+
+	</body>
+</html>

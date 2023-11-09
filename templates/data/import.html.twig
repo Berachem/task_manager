@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Import Data
+{% endblock %}
+
+{% block body %}
+
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<h1>Import Data</h1>
+
+		Here is an example of JSON data to import:
+        <br>
+		<pre class="bg-light text-dark-50">
+            {
+                "categories": [
+                    {
+                    "name": <span style = "color: green">"Tâches ménagères"</span>,
+                    "tasks" : [
+                        {
+                            "title" :  <span style = "color: green">"Ranger la chambre" </span>,
+                            "description" :  <span style = "color: green">"Il faudrait le faire avant 16h" </span>,
+                        } <span style = "color: red">...</span>
+                        ]
+                    } <span style = "color: red">...</span>
+                ]
+            }
+        </pre>
+
+
+			{{ include('data/_importForm.html.twig') }}
+
+		</div>
+
+	</div>
+	<a href="{{ path('app_data') }}" class="btn btn-secondary">
+		<i class="fa fa-arrow-left"></i>
+		Back to List</a>
+
+{% endblock %}

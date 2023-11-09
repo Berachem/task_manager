@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1>🔒 Admin Dashboard</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>{% for role in app.user.roles %}
+                            <span class="badge bg-{{ role == 'ROLE_ADMIN' ? 'danger' : 'success' }}">{{ role }}</span>
+                        {% endfor %}
+                        </td>
+            <td>
+                <a href="{{ path('app_admin_show', {'id': user.id}) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i></a>
+                <a href="{{ path('app_admin_edit', {'id': user.id}) }}" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
+                <form method="post" action="{{ path('app_admin_delete', {'id': user.id}) }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <button class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">No records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('app_admin_new') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Create new</a>
+
+<hr>
+<h2>Global Statistics</h2>
+<ul>
+    <li> {{ users|length }} users </li>
+    <li> {{ users|map(u => u.tasks|length)|reduce((sum, v) => sum + v) }} tasks 📝</li>
+    <li> {{ users|map(u => u.categories|length)|reduce((sum, v) => sum + v) }} categories 📁</li>
+</ul>
+
+
+</div>
+{% endblock %}

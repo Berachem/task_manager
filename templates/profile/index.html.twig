@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+
+
+<section class="vh-100" style="background-color: #f4f5f7; margin-top: -100px;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+      
+        <div class="card mb-3" style="border-radius: .5rem;">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white"
+              style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+              <img src="https://th.bing.com/th/id/R.5000209c92ec802fb98b12a7d8b1557f?rik=3FeuU9Y%2bEOKemQ&pid=ImgRaw&r=0"
+                alt="Avatar" class="img-fluid my-5" style="width: 80px;" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Informations  - <i class="text-muted">ID : {{ app.user.id }}</i></h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>email</h6>
+                    <p class="text-muted">{{ app.user.email }}</p>
+                  </div>
+
+                    <div class="col-6 mb-3">
+                        <h6>Roles</h6>
+                        <p class="text-muted">
+                        {% for role in app.user.roles %}
+                            <span class="badge bg-{{ role == 'ROLE_ADMIN' ? 'danger' : 'success' }}">{{ role }}</span>
+                        {% endfor %}
+                        
+                        </p>
+                    </div>
+
+                <h6>Statistics</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>📁 Categories number</h6>
+                    <p class="text-muted">{{ app.user.categories|length }}</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>📝 Tasks number</h6>
+                    <p class="text-muted"> {{ app.user.tasks|length }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+     
+
+{% endblock %}

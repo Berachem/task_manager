@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue !{% endblock %}
+
+{% block body %}
+
+
+	        <header class="pt-5" style="height: 95vh;">
+			    <div class="container">
+					<div class="alert alert-success mt-2" role="alert">
+						<strong>You are connected!</strong> as <i>{{user.email}}</i>. 
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				</div>
+                <div class="container px-5">
+                    <div class="row gx-5 align-items-center justify-content-center">
+                        <div class="col-lg-8 col-xl-7 col-xxl-6">
+                            <div class="my-5 text-center text-xl-start">
+                                <h1 class="display-5 fw-bolder text-black mb-2">Welcome!</h1>
+                                <p class="lead fw-normal text-black-50 mb-4">
+                                    This is a simple task manager made with Symfony & Bootstrap.
+                                </p>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{{ path('app_task_index') }}">📝 Manage my tasks</a>
+                                    <a class="btn btn-outline-secondary btn-lg px-4" href="{{ path('app_category_index') }}">📁 Manage my categories</a>
+                                </div>
+                                 {{isAdmin ? '<br><a class="btn btn-outline-warning btn-lg px-4" href="{{ path(\"app_admin_index\") }}">🔒 Manage users</a>' : ''}}
+								<p class="lead font-italic text-black-50 mb-4 mt-4">Made by <a href="https://www.berachem.dev/" target="_blank">Berachem</a></p>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+						<img src="assets/img/kanban.gif" alt="this slowpoke moves" />
+
+						</div>
+                    </div>
+                </div>
+            </header>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{
+  "categories": [
+    {
+      "name": "Tâches ménagères",
+      "tasks": [
+        {
+          "title": "Ranger la chambre",
+          "description": "Il faudrait le faire avant 16h"
+        },
+        {
+          "title": "Ranger le garage",
+          "description": "nettoyer la voiture + la trot"
+        }
+      ]
+    }
+  ]
+}

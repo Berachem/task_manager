@@ -1,8 +1,8 @@
 # 📋 Task Manager 
 
 
-![](task_manager_Berachem.mp4) 
 
+https://github.com/Berachem/task_manager/assets/61350744/938be92c-6656-4be5-a462-4049777b9b0e
 
 Made with ❤️ by [Berachem](https://www.berachem.dev/)
 
